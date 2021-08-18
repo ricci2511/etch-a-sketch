@@ -1,5 +1,7 @@
 const container = document.querySelector('#container');
 
+makeGridSquares(16, 16);
+
 function makeGridSquares(cols, rows) {
     container.style.setProperty('--grid-cols', cols);
     container.style.setProperty('--grid-rows', rows);
@@ -8,7 +10,9 @@ function makeGridSquares(cols, rows) {
         let cell = document.createElement('div');
         cell.innerText = (i+1);
         container.appendChild(cell).className = 'grid-item';
+
+        cell.addEventListener('mouseover', () => {
+            cell.style.backgroundColor = 'blue';
+        });
     }
 }
-
-makeGridSquares(16, 16);
