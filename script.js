@@ -12,7 +12,16 @@ function makeGridSquares(cols, rows) {
         container.appendChild(cell).className = 'grid-item';
 
         cell.addEventListener('mouseover', () => {
-            cell.style.backgroundColor = 'blue';
+            cell.style.backgroundColor = randomBgColor();
         });
     }
+}
+
+function randomBgColor() {
+    let x = Math.floor(Math.random() * 256);
+    let y = Math.floor(Math.random() * 256);
+    let z = Math.floor(Math.random() * 256);
+    let bgColor = `rgb(${x}, ${y}, ${z})`;
+
+    return bgColor;
 }
