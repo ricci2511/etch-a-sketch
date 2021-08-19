@@ -8,10 +8,23 @@
     grid-gap: 1em;
     grid-template-columns: repeat(var(--grid-cols), 1fr);
     grid-template-rows: repeat(var(--grid-cols), 1fr);
+    margin: 1em;
 }
 
 .grid-item {
     text-align: center;
     padding: 1em;
     border: 1px solid black;
+}
+
+button {
+    background-color: dodgerblue;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5em;
+    display: inline-block;
+    font-size: 16px;
 }

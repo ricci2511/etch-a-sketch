@@ -1,4 +1,5 @@
 const container = document.querySelector('#container');
+const clearGridBtn = document.querySelector('#clearGridBtn');
 
 makeGridSquares(16, 16);
 
@@ -14,8 +15,15 @@ function makeGridSquares(cols, rows) {
         cell.addEventListener('mouseover', () => {
             cell.style.backgroundColor = randomBgColor();
         });
+
+        clearGridBtn.addEventListener('click', () => {
+            // TEST !!
+            cell.style.backgroundColor = 'white';
+        });
     }
 }
+
+
 
 function randomBgColor() {
     let x = Math.floor(Math.random() * 256);
