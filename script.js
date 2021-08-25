@@ -1,29 +1,71 @@
-const container = document.querySelector('#container');
+const DEFAULT_GRID_SIZE = 16;
+const DEFAULT_BG_COLOR = 'black';
+
+let currentColor = DEFAULT_BG_COLOR;
+let userInput = '';
+
+const gridContainer = document.querySelector('#gridContainer');
+const defaultColorBtn = document.querySelector('#defaultColorBtn');
+const randomColorBtn = document.querySelector('#randomColorBtn');
 const clearGridBtn = document.querySelector('#clearGridBtn');
 
-makeGridSquares(16, 16);
+clearGridBtn.addEventListener('click', clearGrid);
+randomColorBtn.addEventListener('click', () => {
+    updateColor('random');
+});
 
-function makeGridSquares(cols, rows) {
-    container.style.setProperty('--grid-cols', cols);
-    container.style.setProperty('--grid-rows', rows);
+defaultColorBtn.addEventListener('click', () => {
+    updateColor(DEFAULT_BG_COLOR);
+});
 
-    for(let i = 0; i < (cols * rows); i++) {
+function updateColor(newColor) {
+    currentColor = newColor;
+}
+
+function createGrid(size) {
+    gridContainer.style.setProperty('--grid-cols', size);
+    gridContainer.style.setProperty('--grid-rows', size);
+
+    for (let i = 0; i < size * size; i++) {
         let cell = document.createElement('div');
-        cell.innerText = (i+1);
-        container.appendChild(cell).className = 'grid-item';
+        gridContainer.appendChild(cell).className = 'grid-item';
 
         cell.addEventListener('mouseover', () => {
-            cell.style.backgroundColor = randomBgColor();
-        });
-
-        clearGridBtn.addEventListener('click', () => {
-            // TEST !!
-            cell.style.backgroundColor = 'white';
+            cell.style.backgroundColor = checkColor();
         });
     }
 }
 
+function clearGrid() {
+    gridContainer.innerHTML = '';
+    userInput = '';
+    gridContainer.style.setProperty('--grid-cols', DEFAULT_GRID_SIZE);
+    gridContainer.style.setProperty('--grid-rows', DEFAULT_GRID_SIZE);
 
+    getInput();
+}
+
+function getInput() {
+    userInput = prompt('Enter a number to create a new grid', '');
+
+    if (userInput < 100) {
+        createGrid(userInput);
+    } else if (userInput >= 100) {
+        alert('Number cant be equal or greater than 100.');
+        getInput();
+    } else {
+        alert('A number is required to build a new grid.');
+        getInput();
+    }
+}
+
+function checkColor() {
+    if (currentColor == DEFAULT_BG_COLOR) {
+        return DEFAULT_BG_COLOR;
+    } else if(currentColor == 'random') {
+        return randomBgColor();
+    }
+}
 
 function randomBgColor() {
     let x = Math.floor(Math.random() * 256);
@@ -33,3 +75,6 @@ function randomBgColor() {
 
     return bgColor;
 }
+
+createGrid(DEFAULT_GRID_SIZE);
+console.log(currentColor);

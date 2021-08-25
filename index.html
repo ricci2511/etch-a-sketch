@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,10 +8,22 @@
     <title>Etch-A-Sketch</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    <button id="clearGridBtn">Clear grid</button>
-    <div id="container"></div>
+    <header class="header">
+        <h1 class="title">Etch-A-Sketch</h1>
+    </header>
+
+    <main class="container">
+        <div id="gridContainer"></div>
+        <div class="buttons">
+            <button id="defaultColorBtn">Default color</button>
+            <button id="randomColorBtn">Random color</button>
+            <button id="clearGridBtn">Clear grid</button>
+        </div>
+    </main>
 </body>
 
 <script src="script.js"></script>
+
 </html>
