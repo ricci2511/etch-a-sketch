@@ -47,15 +47,19 @@ function clearGrid() {
 
 function getInput() {
     userInput = prompt('Enter a number to create a new grid', '');
+    console.log(userInput);
 
-    if (userInput < 100) {
-        createGrid(userInput);
+    if(userInput == '') {
+        alert('Input field cannot be empty');
+        getInput();
     } else if (userInput >= 100) {
-        alert('Number cant be equal or greater than 100.');
+        alert('Number cannot be equal or greater than 100.');
+        getInput();
+    } else if (userInput <= 0) {
+        alert('Number cannot be equal or less than 0.');
         getInput();
     } else {
-        alert('A number is required to build a new grid.');
-        getInput();
+        createGrid(userInput);
     }
 }
 
